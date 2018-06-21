@@ -36,17 +36,6 @@ public class Account {
 
 	@Column(name = "LASTNAME")
 	private String lastname;
-	
-	@OneToMany
-	private List<Contact> contacts;
-
-	public List<Contact> getContacts() {
-		return contacts;
-	}
-
-	public void setContacts(List<Contact> contacts) {
-		this.contacts = contacts;
-	}
 
 	/**
 	 * returns account id.

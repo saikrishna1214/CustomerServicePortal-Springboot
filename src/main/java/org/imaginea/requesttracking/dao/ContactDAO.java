@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ContactDAO extends CrudRepository<Contact, Integer>{
 
-	public List<Contact> getAllContactsByaccountId(int accountId);
+	public List<Contact> getAllContactsByaccount(Account account);
 }
