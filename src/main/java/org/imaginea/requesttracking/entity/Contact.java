@@ -42,26 +42,17 @@ public class Contact {
 	@Column(name = "ZIPCODE")
 	private int zipcode;
 	
-	@ManyToOne
-	private Account account;
+	private int accountId;
 	
-	/**
-	 * gives account object that was mapping 
-	 * to current contact object.
-	 * @return object of Account type.
-	 */
-	public Account getAccount() {
-		return account;
+	
+	public int getAccountId() {
+		return accountId;
 	}
-	
-	/**
-	 * sets Account object
-	 * @param account contains account object details.
-	 */
-	public void setAccount(Account account) {
-		this.account = account;
+
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
 	}
-	
+
 	/**
 	 * gives id of current contact
 	 * @return contact id of integer type.

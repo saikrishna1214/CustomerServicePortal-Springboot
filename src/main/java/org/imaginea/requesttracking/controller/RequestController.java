@@ -29,7 +29,7 @@ public class RequestController {
 		return BuildResponse.buildSuccessMessage(requestService.getServiceRequest(serviceId));
 	}
 	
-	@RequestMapping(value="/accounts/{accountId}/contacts/{contactId}/servicerequests", method = RequestMethod.POST)
+	@RequestMapping(value="/servicerequests/account/{accountId}/contact/{contactId}", method = RequestMethod.POST)
 	public Result creatServiceRequest(@RequestBody ServiceRequest serviceRequest, @PathVariable("accountId") int accountId, @PathVariable("contactId") int contactId) {
 		return BuildResponse.buildSuccessMessage(requestService.createServiceRequest(serviceRequest,accountId,contactId));
 	}

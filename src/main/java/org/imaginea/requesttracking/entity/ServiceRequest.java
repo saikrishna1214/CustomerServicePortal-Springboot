@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * contains details of a service request it maps with a row in service request
@@ -48,6 +50,7 @@ public class ServiceRequest {
 	@ManyToOne
 	private Account account;
 	
+	@OneToOne
 	private Contact contact;
 
 	public Contact getContact() {

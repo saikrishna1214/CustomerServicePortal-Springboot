@@ -1,7 +1,5 @@
 package org.imaginea.requesttracking.controller;
 
-import java.util.List;
-
 import org.imaginea.requesttracking.dto.Result;
 import org.imaginea.requesttracking.entity.Contact;
 import org.imaginea.requesttracking.service.ContactService;

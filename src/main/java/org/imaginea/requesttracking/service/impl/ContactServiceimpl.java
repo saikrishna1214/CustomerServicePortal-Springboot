@@ -24,8 +24,7 @@ public class ContactServiceimpl implements ContactService {
 	public List<Contact> getAllContacts(int accountid) {
 		
 		accountDAO.findById(accountid).orElseThrow(() -> new CustomerServicePortalException("Customer Not Found"));
-		Account account = accountDAO.findById(accountid).get();
-		return contactDAO.getAllContactsByaccount(account);
+		return contactDAO.getAllContactsByaccountId(accountid);
 	}
 
 	@Override
@@ -44,9 +43,12 @@ public class ContactServiceimpl implements ContactService {
 	public Contact createContact(Contact contact,int accountid) {
 		
 		accountDAO.findById(accountid).orElseThrow(() -> new CustomerServicePortalException("Customer Not Found"));
+		contact.setAccountId(accountid);
 		Account account = accountDAO.findById(accountid).get();
-		contact.setAccount(account);
-		return contactDAO.save(contact);
+		Contact contact2 = contactDAO.save(contact);
+		account.getContacts().add(contact2);
+		accountDAO.save(account);
+		return contact2;
 	}
 
 	@Override

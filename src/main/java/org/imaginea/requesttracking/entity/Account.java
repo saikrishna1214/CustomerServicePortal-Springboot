@@ -1,9 +1,12 @@
 package org.imaginea.requesttracking.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * Contains details of account table setter and getter methods will set and
@@ -34,6 +37,16 @@ public class Account {
 	@Column(name = "LASTNAME")
 	private String lastname;
 	
+	@OneToMany
+	private List<Contact> contacts;
+
+	public List<Contact> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
+	}
 
 	/**
 	 * returns account id.
