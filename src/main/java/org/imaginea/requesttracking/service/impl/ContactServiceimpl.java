@@ -1,6 +1,7 @@
 package org.imaginea.requesttracking.service.impl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.imaginea.requesttracking.dao.AccountDAO;
 import org.imaginea.requesttracking.dao.ContactDAO;
@@ -24,13 +25,18 @@ public class ContactServiceimpl implements ContactService {
 	public List<Contact> getAllContacts(int accountid) {
 		
 		accountDAO.findById(accountid).orElseThrow(() -> new CustomerServicePortalException("Customer Not Found"));
-		return contactDAO.getAllContactsByaccountId(accountid);
+		return contactDAO.getAllContactsByaccount(accountDAO.findById(accountid).get());
 	}
 
 	@Override
 	public Contact getContact(int phone) {
 		
+		try {
 		return contactDAO.findById(phone).get();
+		}
+		catch(NoSuchElementException e) {
+			return null;
+		}
 	}
 
 	@Override
@@ -43,12 +49,8 @@ public class ContactServiceimpl implements ContactService {
 	public Contact createContact(Contact contact,int accountid) {
 		
 		accountDAO.findById(accountid).orElseThrow(() -> new CustomerServicePortalException("Customer Not Found"));
-		contact.setAccountId(accountid);
-		Account account = accountDAO.findById(accountid).get();
-		Contact contact2 = contactDAO.save(contact);
-		account.getContacts().add(contact2);
-		accountDAO.save(account);
-		return contact2;
+		contact.setAccount(accountDAO.findById(accountid).get());
+		return contactDAO.save(contact);
 	}
 
 	@Override

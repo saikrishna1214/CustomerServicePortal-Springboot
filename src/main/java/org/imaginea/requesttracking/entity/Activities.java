@@ -1,6 +1,8 @@
 package org.imaginea.requesttracking.entity;
 
 import java.time.LocalDate;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,13 +26,10 @@ public class Activities {
 	private int activityid;
 
 	@Column(name = "UPDATEDDATE")
-	private LocalDate updateddate;
+	private Date updateddate;
 
 	@Column(name = "STATUSUPDATE")
 	private String statusUpdate;
-
-	@ManyToOne
-	private ServiceRequest servicerequest;
 
 	@Column(name = "UPDATEDBY")
 	private String updatedemployee;
@@ -54,33 +53,24 @@ public class Activities {
 		this.activityid = activityid;
 	}
 
-	public LocalDate getUpdateddate() {
+	public Date getUpdateddate() {
 		return updateddate;
 	}
 
-	public void setUpdateddate(LocalDate updateddate) {
-		this.updateddate = updateddate;
+	public void setUpdateddate(Date date) {
+		this.updateddate = date;
 	}
 
-	/**
-	 * gives servicerequest object
-	 * 
-	 * @return servicerequestobject
-	 */
-	public ServiceRequest getServicerequest() {
-		return servicerequest;
+	private int srNumber;
+
+	public int getSrNumber() {
+		return srNumber;
 	}
 
-	/**
-	 * sets service request object
-	 * 
-	 * @param servicerequest
-	 *            will give service request object which is assigned to present
-	 *            servicerequest variable.
-	 */
-	public void setServicerequest(ServiceRequest servicerequest) {
-		this.servicerequest = servicerequest;
+	public void setSrNumber(int srNumber) {
+		this.srNumber = srNumber;
 	}
+
 
 	/**
 	 * gives status update

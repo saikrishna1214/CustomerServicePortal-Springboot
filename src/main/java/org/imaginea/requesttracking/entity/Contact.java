@@ -42,25 +42,20 @@ public class Contact {
 	@Column(name = "ZIPCODE")
 	private int zipcode;
 	
-	private int accountId;
-	
-	
-	public int getAccountId() {
-		return accountId;
+	@ManyToOne
+	private Account account;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setAccountId(int accountId) {
-		this.accountId = accountId;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
-	/**
-	 * gives id of current contact
-	 * @return contact id of integer type.
-	 */
 	public int getContactid() {
 		return contactid;
 	}
-	
+
 	/**
 	 * sets contact id of present contact
 	 * @param contactid contains integer value which

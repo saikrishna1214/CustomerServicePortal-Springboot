@@ -1,5 +1,6 @@
 package org.imaginea.requesttracking.exception;
 
+@SuppressWarnings("serial")
 public class CustomerServicePortalException extends RuntimeException {
 		
 		private String message;

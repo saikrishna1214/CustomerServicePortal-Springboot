@@ -24,6 +24,9 @@ public class RequestServiceImpl implements RequestService {
 	@Autowired
 	private ContactDAO contactDAO;
 	
+	@Autowired
+	private ActivityServiceImpl activityservice;
+	
 	@Override
 	public List<ServiceRequest> getAllServiceRequests() {
 		
@@ -39,7 +42,9 @@ public class RequestServiceImpl implements RequestService {
 		serviceRequest.setContactid(contactId);
 		serviceRequest.setOpendate(new Date());
 		serviceRequest.setStatus("Active");
-		return serviceRequestDAO.save(serviceRequest);
+		ServiceRequest serviceRequest2 =  serviceRequestDAO.save(serviceRequest);
+		activityservice.createActivity(serviceRequest2);
+		return serviceRequest2;
 	}
 
 	@Override
@@ -51,8 +56,12 @@ public class RequestServiceImpl implements RequestService {
 	@Override
 	public ServiceRequest updateServiceRequest(ServiceRequest serviceRequest, int serviceId) {
 		
-		serviceRequest.setSrnumber(serviceId);
-		return serviceRequestDAO.save(serviceRequest);
+		ServiceRequest serviceRequest2 = serviceRequestDAO.findById(serviceId).get();
+		serviceRequest2.setDescription(serviceRequest.getDescription());
+		serviceRequest2.setStatus(serviceRequest.getStatus());
+		ServiceRequest serviceRequest3 =  serviceRequestDAO.save(serviceRequest2);
+		activityservice.createActivity(serviceRequest3);
+		return serviceRequest3;
 	}
 
 	@Override

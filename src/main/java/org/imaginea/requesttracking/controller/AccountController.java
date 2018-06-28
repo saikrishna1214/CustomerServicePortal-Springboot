@@ -8,6 +8,7 @@ import org.imaginea.requesttracking.entity.Account;
 import org.imaginea.requesttracking.service.AccountService;
 import org.imaginea.requesttracking.util.BuildResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ public class AccountController {
 		return BuildResponse.buildSuccessMessage(accountservice.getAllAccounts());
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/accounts/{emailid}", method = RequestMethod.GET)
 	public Result getAccount(@PathVariable("emailid") String emailid) {
 		
