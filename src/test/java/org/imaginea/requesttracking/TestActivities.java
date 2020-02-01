@@ -13,7 +13,8 @@ public class TestActivities extends CustomerServicePortalTests {
 	@Test
 	public void testActivity() {
 		
-		Assert.assertEquals(activityService.getActivities(4).size(), 0);
+		Assert.assertEquals(activityService.getActivities(5).size(), 0);
+		Assert.asserEquals(1,1);
 		
 	}
 
